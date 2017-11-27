@@ -1,0 +1,14 @@
+form(name="barco" method="post", action="/barco/#{barco ? 'editar-barco/' + barco._id : ''}" )
+  h2 Ingrese nombre
+  input(type="text" name="nombre" value="#{barco && barco.nombre ? barco.nombre : ''}")
+  h2 Ingrese numeroMatricula
+  input(type="text" name="numeroMatricula" value="#{barco && barco.numeroMatricula ? barco.numeroMatricula : ''}")
+  h2 Ingrese numeroAmarre
+  input(type="text" name="numeroAmarre" value="#{barco && barco.numeroAmarre ? barco.numeroAmarre : ''}")
+  h2 Ingrese Cuota
+  input(type="text" name="cuota" value="#{barco && barco.cuota ? barco.cuota : ''}")
+  
+  br
+  br
+  br
+  button(type='submit') Guardar

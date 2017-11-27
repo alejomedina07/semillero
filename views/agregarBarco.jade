@@ -1,0 +1,18 @@
+h1 ¿Qué barco desea aggregar?
+table.table.table-responsive
+  tr
+    th.text-center Nombre
+    th.text-center Número Matricula
+    th.text-center Número Amarre
+    th.text-center Cuota
+    th.text-center agregar barco
+      each barco in barcos
+        tr.text-center
+          td #{barco.nombre}
+          td #{barco.numeroMatricula}
+          td #{barco.numeroAmarre}
+          td #{barco.cuota}
+          td
+            form(name="cliente" method="post", action="/agregar-barco/#{idCliente}" )
+              input(type="hidden" name="barcos" value="#{barco._id}")
+              button(type="submit" ) agregar

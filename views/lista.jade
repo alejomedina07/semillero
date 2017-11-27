@@ -1,0 +1,32 @@
+h1 lista de clientes
+
+table.table.table-responsive
+  tr
+    th.text-center Nombre
+    th.text-center apellido
+    th.text-center identificacion
+    th.text-center telefono
+    th.text-center direccion
+    th.text-center tipo
+    th.text-center ver barcos
+    th.text-center Total barcos
+    th.text-center editar
+    th.text-center eliminar
+    th.text-center agregar barco
+      each cliente in clientes
+        tr.text-center
+          td #{cliente.nombre}
+          td #{cliente.apellido}
+          td #{cliente.identificacion}
+          td #{cliente.telefono}
+          td #{cliente.direccion}
+          td #{cliente.tipo}
+          td
+            a(href="/barcos-de-cliente/#{cliente._id}") ver barcos
+          td #{cliente.barcos.length}
+          td
+            a(href="/editar-cliente/#{cliente._id}") editar
+          td
+            a(href="/eliminar-cliente/#{cliente._id}") eliminar
+          td
+            a(href="/agregar-barco/#{cliente._id}") agregar barco

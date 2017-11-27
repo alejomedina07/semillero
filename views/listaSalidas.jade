@@ -1,0 +1,14 @@
+h1 nombre: #{barco.nombre},  numero de matricula: #{barco.numeroMatricula},  cuota: #{barco.cuota}.
+h2 salidas  
+table.table.table-responsive
+  tr
+    th.text-center Fecha
+    th.text-center Hora
+    th.text-center Destino
+    th.text-center Capitan
+      each salida in barco.salidas
+        tr.text-center
+          td #{salida.fecha}
+          td #{salida.hora}
+          td #{salida.destino}
+          td #{salida.capitan.nombre} #{salida.capitan.apellido}

@@ -1,0 +1,31 @@
+-lo primero es descargar node y mongo y ponelos a correr
+-pararse en la carpeta del proyecto desde la consola e instalar express y mongoose --- npm install mongoose --- npm install express
+- las configuraciones de la aplicación están en la carpeta de la aplicación en el fichero app.js
+- la aplicacion tiene carpetas y ficheros 
+- las carpetas tienen ficheros por dentro 
+- los ficheros son archivos de texto, se dividen en dos; uno son los terminados en .js (ficheros de onfiguracion), y los terminados en .jade que son de vista o interfaz. 
+-conectar la aplicacion a la base de datos con esta linea de codigo --- require('mongoose').connect('mongodb://localhost/taller1');
+-configurar bodyParser para que lleguen los datos a la ruta establecida ---- form(name="cliente" method="post", action="/" ) (jade) --- router.post("/", function(req, res) (controlador)
+-configurar jade ----- app.set("view engine", "jade");
+-configurar controlador --- app.use('/', require('./controladores/cliente'));
+-el controlador es el que define las url que vamos a tener y que fichero de jade utilizar
+
+
+TIPS 
+CONTRALADORES 
+	+ res.render = le decimos a la aplicacion que busque un jade con el nombre que le pasamos entre parentesis (buscar en carpeta views)
+	+ res.redirect = le decimos  a la aplicacion que busque un router.get con esa url 
+
+PONER EN MARCHA LA APLICACIÓN 
+
+- poner en marcha servidor de monog
+ 	+ abrir consola (windos + r / cdm + enter )
+ 	+ una vez en la consola escribir mongod + enter
+
+- poner en marcha la aplicación 
+	+ abrir una consoal (windows +r / cdm + enter)
+	+ dirijirnos hacia la carpeta donde esta la aplicación 
+	+ cuando estemos en la carpeta damos node app
+	+ abrir el navegador y poner localhost:3000
+	
+
