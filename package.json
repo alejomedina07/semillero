@@ -4,6 +4,7 @@
   "description": "semillero ",
   "main": "./app.js",
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "debug": "^3.1.0",
     "express": "^4.16.2",
     "jade": "^1.11.0",

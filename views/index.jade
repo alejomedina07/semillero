@@ -3,6 +3,7 @@ extends ./layout/layout
 block header
   include ./header/header
 block content
+  h1 prueba
   form(name="cliente" method="post", action="/#{cliente ? 'editar-cliente/' + cliente._id : ''}" )
     h2 Ingrese nombre
     input(type="text" name="nombre" value="#{cliente && cliente.nombre ? cliente.nombre : ''}")
