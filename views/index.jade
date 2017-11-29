@@ -3,30 +3,52 @@ extends ./layout/layout
 block header
   include ./header/header
 block content
-  form(name="cliente" method="post", action="/#{cliente ? 'editar-cliente/' + cliente._id : ''}" )
-    h2 Ingrese nombre
-    input(type="text" name="nombre" value="#{cliente && cliente.nombre ? cliente.nombre : ''}")
-    h2 Ingrese apellido
-    input(type="text" name="apellido" value="#{cliente && cliente.apellido ? cliente.apellido : ''}")
-    select(name="tipo" )
-      option(value="") Seleccione tipo de Cliente
-      option(value="capitan") Capitan
-      option(value="socio") Socio
-    h2 Ingrese identificacion
-    input(type="text" name="identificacion" value="#{cliente && cliente.identificacion ? cliente.identificacion : ''}")
-    h2 Ingrese telefono
-    input(type="text" name="telefono" value="#{cliente && cliente.telefono ? cliente.telefono : ''}")
-    h2 Ingrese direccion
-    input(type="text" name="direccion" value="#{cliente && cliente.direccion ? cliente.direccion : ''}")
-    h2 Ingrese licencia
-    input(type="text" name="licencia" value="#{cliente && cliente.licencia ? cliente.licencia : ''}")
+  .container
+    .row
+      .col-xs-6
+        h2 Registro de usuario
+        br
+        form(name="cliente" method="post", action="/#{cliente ? 'editar-cliente/' + cliente._id : ''}" )
+          .input-group
+            span#basic-addon1.input-group-addon
+              span.glyphicon.glyphicon-user
+            input.form-control(type='text', placeholder='Nombre', aria-describedby='basic-addon1' name="nombre" value="#{cliente && cliente.nombre ? cliente.nombre : ''}")
+          br
+          .input-group
+            span#basic-addon2.input-group-addon
+              span.glyphicon.glyphicon-user
+            input.form-control(type='text', placeholder='Apellido', aria-describedby='basic-addon2' name="apellido" value="#{cliente && cliente.apellido ? cliente.apellido : ''}")
+          br
+          .input-group
+            span#basic-addon2.input-group-addon
+              span.glyphicon.glyphicon-record
+            input.form-control(type='text', placeholder='Identificación', aria-describedby='basic-addon2' name="identificacion" value="#{cliente && cliente.identificacion ? cliente.identificacion : ''}")
+          br
 
-    br
-    br
-    // select(multiple)
-    //   option(value='volvo') Volvo
-    br
-    br
-    br
-    button(type='submit') Guardar
-    h3 fin
+          .input-group
+            span#basic-addon2.input-group-addon
+              span.glyphicon.glyphicon-earphone
+            input.form-control(type='text', placeholder='telefono', aria-describedby='basic-addon2' name="telefono" value="#{cliente && cliente.telefono ? cliente.telefono : ''}")
+          br
+
+          .input-group
+            span#basic-addon2.input-group-addon
+              span.glyphicon.glyphicon-road
+            input.form-control(type='text', placeholder='dirección', aria-describedby='basic-addon2' name="direccion" value="#{cliente && cliente.direccion ? cliente.direccion : ''}")
+          br
+
+          .input-group
+            span#basic-addon2.input-group-addon
+              span.glyphicon.glyphicon-book
+            input.form-control(type='text', placeholder='carrera', aria-describedby='basic-addon2' name="carrera" value="#{cliente && cliente.carrera ? cliente.carrera : ''}")
+          br
+          .input-group
+            span#basic-addon2.input-group-addon
+              span.glyphicon.glyphicon-envelope
+            input.form-control(type='text', placeholder='correo', aria-describedby='basic-addon2' name="correo" value="#{cliente && cliente.correo ? cliente.correo : ''}")
+          br
+
+
+          br
+          br
+          button(type='submit') Guardar

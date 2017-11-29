@@ -1,7 +1,8 @@
 var express = require('express'),
-  debug=require("debug")("Semillero:usuario"),
+  debug=require("debug")("SE:controlador:usuario"),
   ObjectId = require('mongoose').Types.ObjectId,
-  Cliente = require('../modelos/Cliente'),
+  usuario = require('../modelos/Usuario'),
+  general = require('../modelos/General'),
   Barco = require('../modelos/Barco'),
   router = express.Router();
 
@@ -12,7 +13,7 @@ router.get("/", function(req, res) {
 
 
 router.get("/lista-clientes", function(req, res) {
-  Cliente.find()
+  usuario.find()
   .then(function(lista) {
     debug('prueba');
     debug(lista);
@@ -29,7 +30,7 @@ router.get("/lista-clientes", function(req, res) {
 // });
 
 router.get('/editar-cliente/:id', function(req, res) {
-  Cliente.findById(req.params.id)
+  usuario.findById(req.params.id)
   .then(function(cliente) {
     res.render('index', {
       cliente: cliente,
@@ -41,7 +42,7 @@ router.get('/editar-cliente/:id', function(req, res) {
 });
 
 router.get('/eliminar-cliente/:id', function(req, res) {
-  Cliente.remove({_id: ObjectId(req.params.id)})
+  usuario.remove({_id: ObjectId(req.params.id)})
   .then(function(cliente) {
     res.redirect('/lista-clientes' );
   })
@@ -51,7 +52,10 @@ router.get('/eliminar-cliente/:id', function(req, res) {
 });
 
 router.post("/", function(req, res) {
-  var cliente = new Cliente(req.body);
+  debug('post ');
+  debug(general.generarAuditoria(req));
+  req.body.auditorias = general.generarAuditoria(req);
+  var cliente = new usuario(req.body);
   console.log(cliente);
   cliente.save()
   .then(function(nuevo) {
@@ -63,7 +67,7 @@ router.post("/", function(req, res) {
 });
 
 router.post('/editar-cliente/:id', function(req, res) {
-  Cliente.findById(req.params.id)
+  usuario.findById(req.params.id)
   .then(function(doc) {
     doc.nombre = req.body.nombre;
     doc.apellido = req.body.apellido;
@@ -90,7 +94,7 @@ router.post('/editar-cliente/:id', function(req, res) {
 router.get("/agregar-barco/:id", function(req, res) {
   Barco.find()
   .then(function (barcos) {
-    res.render("agregarBarco", {idCliente:req.params.id, barcos:barcos});
+    res.render("agregarBarco", {idusuario:req.params.id, barcos:barcos});
   })
   .catch(function (error) {
 
@@ -99,7 +103,7 @@ router.get("/agregar-barco/:id", function(req, res) {
 
 
 router.post("/agregar-barco/:id", function(req, res) {
-  Cliente.findOne({_id:req.params.id})
+  usuario.findOne({_id:req.params.id})
   .then(function (doc) {
     doc.barcos.push(req.body.barcos);
     doc.save();
@@ -116,10 +120,10 @@ router.get("/barcos-de-cliente/:id", function(req, res) {
   console.log("/barcos-de-cliente/:id");
   condicionales.push({$match:{_id:ObjectId(req.params.id)}});
   condicionales.push({$lookup: {from: 'barcos', localField: 'barcos', foreignField: '_id', as: 'barcos'}});
-  Cliente.aggregate(condicionales)
+  usuario.aggregate(condicionales)
   .then(function (cliente) {
     console.log(cliente[0]);
-    res.render("barcosCliente", {cliente:cliente[0]});
+    res.render("barcosusuario", {cliente:cliente[0]});
   })
   .catch(function (error) {
   });
@@ -130,7 +134,7 @@ router.get("/barcos-de-cliente/:id", function(req, res) {
 
 
 router.get("/salida/:id", function(req, res) {
-  Cliente.find({tipo:'capitan'})
+  usuario.find({tipo:'capitan'})
   .then(function (capitanes) {
     res.render("salida", {barco:req.params.id, capitanes:capitanes});
   })
