@@ -1,3 +1,4 @@
+/*Inicio de carousel*/
 #slideshow {
 	margin: 0 auto;
 	padding-top: 50px;
@@ -87,9 +88,11 @@
 }
 
 
+/*fin de carousel*/
 
 
-/*Footer*/
+
+/* Inicio Footer*/
 
 footer {
   text-align: right;
@@ -103,3 +106,4 @@ footer i {
   font-size: 20pt;
   padding: 1%;
 }
+/* Fin Footer*/
