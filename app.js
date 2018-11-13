@@ -11,11 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "jade");
 
 app.use('/static',express.static(path.join(__dirname, '/node_modules')));
+app.use('/static',express.static(path.join(__dirname, '/publico')));
 
-app.use('/', require('./controladores/usuario'));
-app.use('/barco', require('./controladores/barco'));
-
-
-
+app.use('/', require('./controladores/index'));
 
 app.listen(3000);
