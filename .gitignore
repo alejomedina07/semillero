@@ -1,0 +1,6 @@
+.settings/
+.project
+
+# Bower
+bower_components/
+node_modules/
